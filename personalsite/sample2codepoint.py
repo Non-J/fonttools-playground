@@ -9,6 +9,9 @@ result = []
 with open(argv[1]) as file:
 	for line in file.readlines():
 		for char in line.strip():
-			result.append(f"U+{hex(ord(char))[2:].upper().zfill(4)}")
+			char_val = ord(char)
+			if char_val < 128:
+				continue
+			result.append(f"U+{hex(char_val)[2:].upper().zfill(4)}")
 
-print(",".join(sorted(result)))
+print(",".join(sorted(list(dict.fromkeys(result)))))

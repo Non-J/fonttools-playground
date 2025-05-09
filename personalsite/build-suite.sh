@@ -43,25 +43,18 @@ hash_filename() {
 # =================
 
 fontsubset="\
---layout-features=\"ccmp,liga,pnum,kern,mark,mkmk,aalt\" \
---unicodes=\"U+000D,U+0020,U+00A0,U+00AD,U+0E00-0E7F\" \
+--layout-features=\"\" \
 "
 
-echo "========== BUILD ANAKOTMAI =========="
-
-rm -rf ./output-anakotmai
+echo "========== BUILD SUITE =========="
 
 # Build
-mkdir -p output-anakotmai
+rm -rf ./output-suite
+mkdir -p output-suite
 
-eval "pyftsubset ../anakotmai/Anakotmai-Light.ttf --output-file=\"output-anakotmai/Anakotmai-Light.ttf\" $fontsubset"
-eval "pyftsubset ../anakotmai/Anakotmai-Medium.ttf --output-file=\"output-anakotmai/Anakotmai-Medium.ttf\" $fontsubset"
-eval "pyftsubset ../anakotmai/Anakotmai-Bold.ttf --output-file=\"output-anakotmai/Anakotmai-Bold.ttf\" $fontsubset"
+cp ../suite/fonts/variable/woff2/SUITE-Variable.woff2 output-suite/SUITE.woff2
+hash_filename "./output-suite/"
 
-eval "pyftsubset ../anakotmai/Anakotmai-Light.ttf --flavor=woff2 --output-file=\"output-anakotmai/Anakotmai-Light.woff2\" $fontsubset"
-eval "pyftsubset ../anakotmai/Anakotmai-Medium.ttf --flavor=woff2 --output-file=\"output-anakotmai/Anakotmai-Medium.woff2\" $fontsubset"
-eval "pyftsubset ../anakotmai/Anakotmai-Bold.ttf --flavor=woff2 --output-file=\"output-anakotmai/Anakotmai-Bold.woff2\" $fontsubset"
+python3 ./process-suite.py
 
-hash_filename "./output-anakotmai/"
-
-echo "========== COMPLETE ANAKOTMAI =========="
+echo "========== COMPLETE SUITE =========="
