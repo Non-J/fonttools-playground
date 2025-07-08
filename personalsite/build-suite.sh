@@ -52,9 +52,6 @@ echo "========== BUILD SUITE =========="
 rm -rf ./output-suite
 mkdir -p output-suite
 
-cp ../suite/fonts/variable/woff2/SUITE-Variable.woff2 output-suite/SUITE.woff2
-hash_filename "./output-suite/"
-
 python3 ./process-suite.py
 
 echo "========== COMPLETE SUITE =========="
